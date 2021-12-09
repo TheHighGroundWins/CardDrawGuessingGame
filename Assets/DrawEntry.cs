@@ -8,7 +8,7 @@ using TMPro;
 public class DrawEntry : MonoBehaviour
 {
 
-    GameObject table;
+    GameObject AndOr;
 
      SuiteEnums suiteType;
      NumberEnums numberType;
@@ -19,7 +19,7 @@ public class DrawEntry : MonoBehaviour
 
     void Start()
     {
-        table = (GameObject)Resources.Load("Table");
+        AndOr = (GameObject)Resources.Load("AndOr");
     }
 
     public void SetCardInfo(SuiteEnums suiteType, NumberEnums numberType,
@@ -45,16 +45,16 @@ public class DrawEntry : MonoBehaviour
 
         if (int.TryParse(inputText.text, out drawNumber))
         {
-            GameObject tableInstance = Instantiate<GameObject>(table);
-            tableInstance.GetComponent<CardGenerator>().SetCard(suiteType,
+            GameObject andOrInstance = Instantiate<GameObject>(AndOr,transform);
+            andOrInstance.GetComponent<And>().SetCardInfo(suiteType,
             numberType, faceType, aceSelected, colorType, drawNumber);
-            Destroy(gameObject);
+            
+            andOrInstance.GetComponent<Or>().SetCardInfo(suiteType,
+            numberType, faceType, aceSelected, colorType, drawNumber);
         }
         else
         {
             inputText.text = "Numbers Only";
         }
-
-        Destroy(GameObject.FindWithTag("MainCanvas"));
     }
 }

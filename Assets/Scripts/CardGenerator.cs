@@ -58,7 +58,7 @@ public class CardGenerator : MonoBehaviour
     {
         if (startGame)
         {
-
+        
             if (cardSwapTimer.IsFinished() && !deleteTimerstarted)
             {
                 if (physicalDeck.Count > 0)
@@ -106,11 +106,11 @@ public class CardGenerator : MonoBehaviour
     }
 
     public void SetCard(SuiteEnums suiteType, NumberEnums numberType,
-        FaceEnums faceType, bool aceSelected, ColorEnums colorType, int drawNumber)
+        FaceEnums faceType, bool aceSelected, ColorEnums colorType, int drawNumber, bool and)
     {
         playerCard = gameObject.AddComponent<Card>();
         playerCard.Init(suiteType, numberType,
-        faceType, aceSelected, colorType, drawNumber);
+        faceType, aceSelected, colorType, drawNumber, and);
         playerGuessNumber = drawNumber;
 
         cardCounter.text = "Draws: " + drawCounter;

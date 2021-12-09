@@ -11,67 +11,21 @@ public class Card : MonoBehaviour, IEquatable<Card>
     protected bool aceSelected;
     protected ColorEnums colorType;
     protected int drawNumber;
+    private bool and;
 
     public bool Equals (Card randomCard)
     {
-        if (colorType == ColorEnums.NONE || colorType==randomCard.colorType)
+        if (and)
         {
-            if(suiteType==SuiteEnums.NONE && faceType==FaceEnums.NONE
-            &&numberType==NumberEnums.NONE && !aceSelected)
-            {
-                Debug.Log("1");
+            if (aceSelected && suiteType.Equals(randomCard.suiteType) && numberType.Equals(randomCard.numberType)
+                && faceType.Equals(randomCard.faceType) && colorType.Equals(randomCard.colorType))
                 return true;
-            }
-            if (suiteType!=SuiteEnums.NONE && suiteType.HasFlag(randomCard.suiteType))
-            {
-                if (numberType!=NumberEnums.NONE && numberType.HasFlag(randomCard.numberType)
-                &&randomCard.numberType!=NumberEnums.NONE)
-                {
-                    Debug.Log("2");
-                    return true;
-                }
-                if (faceType!=FaceEnums.NONE && faceType.HasFlag(randomCard.faceType)
-                &&randomCard.faceType!=FaceEnums.NONE)
-                {
-                    Debug.Log("3");
-                    return true;
-                }
-                if (aceSelected && aceSelected == randomCard.aceSelected)
-                {
-                    Debug.Log("4");
-                    return true;
-                }
-                return true;
-            }
+        }
+        else if (aceSelected || suiteType.Equals(randomCard.suiteType) || numberType.Equals(randomCard.numberType)
+                 || faceType.Equals(randomCard.faceType) || colorType.Equals(randomCard.colorType))
+            return true;
 
-            if(suiteType==SuiteEnums.NONE)
-            {
-                if (numberType!=NumberEnums.NONE && numberType.HasFlag(randomCard.numberType)
-                && randomCard.numberType!=NumberEnums.NONE)
-                {
-                    Debug.Log("5");
-                    return true;
-                }
-                if (faceType!=FaceEnums.NONE && faceType.HasFlag(randomCard.faceType)
-                &&randomCard.numberType!=NumberEnums.NONE)
-                {
-                    Debug.Log("6");
-                    return true;
-                }
-                if (aceSelected && aceSelected == randomCard.aceSelected)
-                {
-                    Debug.Log("7");
-                    return true;
-                }
-            }
-            Debug.Log("8");
-            return false;
-        }
-        else
-        {
-            Debug.Log("9");
-            return false;
-        }
+        return false;
     }
 
     public ColorEnums GetColor()
@@ -85,7 +39,7 @@ public class Card : MonoBehaviour, IEquatable<Card>
     }
 
     public void Init (SuiteEnums suiteType, NumberEnums numberType, 
-        FaceEnums faceType, bool aceSelected, ColorEnums colorType, int drawNumber)
+        FaceEnums faceType, bool aceSelected, ColorEnums colorType, int drawNumber, bool and)
     {
         this.suiteType = suiteType;
         this.numberType = numberType;
@@ -93,6 +47,7 @@ public class Card : MonoBehaviour, IEquatable<Card>
         this.aceSelected = aceSelected;
         this.colorType = colorType;
         this.drawNumber = drawNumber;
+        this.and = and;
     }
 
 }
