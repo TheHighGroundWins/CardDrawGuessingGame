@@ -361,8 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89413240bbec76ee98341360887e9d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 2753179310014798309}
-  enterButton: {fileID: 3238087394552718052}
 --- !u!1 &2498629050603039889
 GameObject:
   m_ObjectHideFlags: 0
